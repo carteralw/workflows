@@ -1,29 +1,33 @@
+# Auto-approve documentation-only PRs
 policy:
   approval:
-    - or:
-        - documentation changes only
-        - regular approval required
+    - documentation changes only
 
 approval_rules:
-  # Auto-approve documentation-only PRs
   - name: documentation changes only
-    description: "Auto-approve PRs that only change documentation files"
+    description: "Auto-approve PRs that only modify documentation files"
+    
+    # This rule applies when ONLY doc files are changed
     if:
       only_changed_files:
         paths:
-          - ".*\\.md$"           # Markdown files
-          - ".*\\.rst$"          # reStructuredText
-          - ".*\\.txt$"          # Text files
-          - "docs/.*"            # Files in docs directory
-          - "README.*"           # README files
-          - "CHANGELOG.*"        # Changelog files
-          - "LICENSE.*"          # License files
+          # Markdown files
+          - ".*\\.md$"
+          # Docs directory
+          - "^docs/.*"
+          # README files
+          - "^README.*"
+          # Text files
+          - ".*\\.txt$"
+          # reStructuredText
+          - ".*\\.rst$"
+          # License files
+          - "^LICENSE.*"
+          - "^LICENCE.*"
+          # Changelog files  
+          - "^CHANGELOG.*"
+          - "^CHANGES.*"
+    
+    # Require 0 approvals = auto-approve
     requires:
-      count: 0  # 0 = auto-approve, no human approval needed
-
-  # Regular approval for everything else
-  - name: regular approval required
-    requires:
-      count: 1
-      teams:
-        - "your-org/developers"  # Replace with your team
+      count: 0
