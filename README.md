@@ -3,7 +3,7 @@ The code files for chapter 8 of B18275 have been added on a separate repository 
 Seeing if I will get an event
 
 ## DevOps for Go Tweeter
-The tweeter command line tool will send a tweet via Twitter.
+The tweeter command line tool will send a tweet via Twitter awc.
 
 ## Setup
 You can use tweeter to send a tweet or to output the message to STDOUT. If you want to send a tweet, you will need to set up a Twitter application.
